@@ -64,42 +64,30 @@ const images = [
   },
 ];
 
-// const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
-// function galleryItemTemplate({ preview, original, description }) {
-//   return `
-//     <li class="gallery-item">
-//       <a class="gallery-link" href="${original}">
-//         <img
-//           class="gallery-image"
-//           src="${preview}"
-//           data-source="${original}"
-//           alt="${description}"
-//         />
-//       </a>
-//     </li>
-//   `;
-// }
+function galleryItemTemplate({ preview, original, description }) {
+  return `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${original}">
+        <img 
+          class="gallery-image" 
+          src="${preview}" 
+          alt="${description}" 
+        />
+      </a>
+    </li>`;
+}
 
-// const markup = images.map(galleryItemTemplate).join('');
-// gallery.innerHTML = markup;
+const markup = images.map(galleryItemTemplate).join('');
+gallery.innerHTML = markup;
 
-// gallery.addEventListener('click', event => {
-//   event.preventDefault();
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
-//   const image = event.target.closest('.gallery-image');
-//   if (!image) return;
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
-//   const largeImageURL = image.dataset.source;
-//   const instance = basicLightbox.create(`
-//     <img src="${largeImageURL}" width="800" height="600">
-//   `);
 
-//   instance.show();
-
-//   document.addEventListener('keydown', event => {
-//     if (event.key === 'Escape') {
-//       instance.close();
-//     }
-// });
-// });
